@@ -30,34 +30,36 @@ abstract class AppTheme {
   static final visualDensity = VisualDensity.adaptivePlatformDensity;
 
   /// Light theme and its settings.
-  static ThemeData light(ThemeData theme) => ThemeData(
+  static ThemeData light() => ThemeData(
         brightness: Brightness.light,
-        accentColor: accentColor,
         visualDensity: visualDensity,
-        textTheme: GoogleFonts.mulishTextTheme(theme.textTheme)
-            .apply(bodyColor: AppColors.textDark),
-        backgroundColor: _LightColors.background,
+        textTheme:
+            GoogleFonts.mulishTextTheme().apply(bodyColor: AppColors.textDark),
         scaffoldBackgroundColor: _LightColors.background,
         cardColor: _LightColors.card,
         primaryTextTheme: const TextTheme(
-          headline6: TextStyle(color: AppColors.textDark),
+          titleLarge: TextStyle(color: AppColors.textDark),
         ),
         iconTheme: const IconThemeData(color: AppColors.iconDark),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: accentColor)
+            .copyWith(background: _LightColors.background),
       );
 
   /// Dark theme and its settings.
   static ThemeData dark(ThemeData theme) => ThemeData(
         brightness: Brightness.dark,
-        accentColor: accentColor,
         visualDensity: visualDensity,
         textTheme: GoogleFonts.interTextTheme(theme.textTheme)
             .apply(bodyColor: AppColors.textLigth),
-        backgroundColor: _DarkColors.background,
         scaffoldBackgroundColor: _DarkColors.background,
         cardColor: _DarkColors.card,
         primaryTextTheme: const TextTheme(
-          headline6: TextStyle(color: AppColors.textLigth),
+          titleLarge: TextStyle(color: AppColors.textLigth),
         ),
         iconTheme: const IconThemeData(color: AppColors.iconLight),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: accentColor)
+            .copyWith(background: _DarkColors.background),
       );
 }

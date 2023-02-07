@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger_app/screens/screens.dart';
+import 'package:messenger_app/theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -8,10 +9,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      theme:,
+    return MaterialApp(
+      theme: AppTheme.light(),
       title: 'Chatter',
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
