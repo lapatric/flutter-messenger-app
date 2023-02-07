@@ -48,7 +48,6 @@ abstract class AppTheme {
 
   /// Dark theme and its settings.
   static ThemeData dark() => ThemeData(
-        brightness: Brightness.dark,
         visualDensity: visualDensity,
         textTheme:
             GoogleFonts.interTextTheme().apply(bodyColor: AppColors.textLigth),
@@ -60,6 +59,8 @@ abstract class AppTheme {
         iconTheme: const IconThemeData(color: AppColors.iconLight),
         colorScheme: ColorScheme.fromSwatch()
             .copyWith(secondary: accentColor)
-            .copyWith(background: _DarkColors.background),
+            .copyWith(
+                background: _DarkColors.background,
+                brightness: Brightness.dark),
       );
 }
