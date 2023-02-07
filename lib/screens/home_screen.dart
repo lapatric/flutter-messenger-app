@@ -5,11 +5,15 @@ import 'package:messenger_app/pages/contacts_page.dart';
 import 'package:messenger_app/pages/messages_page.dart';
 import 'package:messenger_app/pages/notifications_page.dart';
 import 'package:messenger_app/theme.dart';
+import 'package:messenger_app/widgets/widgets.dart';
+
+import '../helpers.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final ValueNotifier<int> pageIndex = ValueNotifier(0);
+  final ValueNotifier<String> pageTitle = ValueNotifier('Messages');
 
   final pages = const [
     MessagesPage(),
@@ -18,9 +22,41 @@ class HomeScreen extends StatelessWidget {
     ContactsPage(),
   ];
 
+  final pageTitles = const [
+    'Messages',
+    'Notification',
+    'Calls',
+    'Contacts',
+  ];
+
+  void _onNavigationItemSelected(int value) {
+    pageTitle.value = pageTitles[value];
+    pageIndex.value = value;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0, // removes visible shadow even when transparent background
+        title: ValueListenableBuilder(
+          valueListenable: pageTitle,
+          builder: (BuildContext context, String value, _) {
+            return Text(
+              value,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.white),
+            );
+          },
+        ),
+        actions: [
+          // actions are at the complete right in the appBar. It takes a list of items
+          Avatar.small(url: Helpers.randomPictureUrl()),
+        ],
+      ),
       body: ValueListenableBuilder(
         // With this ValueListenableBuilder we avoid rebuilding the Scaffold Widget (parent) and the bottomNavigationBar.
         // If we made HomeScreen a stateful widget to use setState(), it would rebuild all widgets!
@@ -30,9 +66,7 @@ class HomeScreen extends StatelessWidget {
         },
       ),
       bottomNavigationBar: _BottomNavigationBar(
-        onItemSelected: (int value) {
-          pageIndex.value = value;
-        },
+        onItemSelected: _onNavigationItemSelected,
       ), // bottomNavigationBar expects a widget -> good practice to seperate these for performance
     );
   }
