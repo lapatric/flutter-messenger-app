@@ -47,11 +47,11 @@ abstract class AppTheme {
       );
 
   /// Dark theme and its settings.
-  static ThemeData dark(ThemeData theme) => ThemeData(
+  static ThemeData dark() => ThemeData(
         brightness: Brightness.dark,
         visualDensity: visualDensity,
-        textTheme: GoogleFonts.interTextTheme(theme.textTheme)
-            .apply(bodyColor: AppColors.textLigth),
+        textTheme:
+            GoogleFonts.interTextTheme().apply(bodyColor: AppColors.textLigth),
         scaffoldBackgroundColor: _DarkColors.background,
         cardColor: _DarkColors.card,
         primaryTextTheme: const TextTheme(
