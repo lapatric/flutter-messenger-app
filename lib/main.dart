@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.dark(),
       themeMode: ThemeMode.dark, // if not set here, it picks device default
       title: 'Chatter',
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }
