@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
-      themeMode: ThemeMode.dark, // if not set here, it picks device default
+      themeMode: ThemeMode.light, // if not set here, it picks device default
       title: 'Chatter',
       home: HomeScreen(),
     );

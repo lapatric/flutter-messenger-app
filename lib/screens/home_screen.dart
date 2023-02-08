@@ -5,6 +5,7 @@ import 'package:messenger_app/pages/contacts_page.dart';
 import 'package:messenger_app/pages/messages_page.dart';
 import 'package:messenger_app/pages/notifications_page.dart';
 import 'package:messenger_app/theme.dart';
+import 'package:messenger_app/widgets/glowing_action_button.dart';
 import 'package:messenger_app/widgets/widgets.dart';
 
 import '../helpers.dart';
@@ -143,6 +144,13 @@ class _BottomNavigationBarState extends State<_BottomNavigationBar> {
                 isSelected: (selectedIndex == 1),
                 onTap: handleItemSelected,
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: GlowingActionButton(
+                    color: AppColors.secondary,
+                    icon: CupertinoIcons.add,
+                    onPressed: () {}),
+              ),
               _NavigationBarItem(
                 index: 2,
                 label: 'Calls',
@@ -190,7 +198,7 @@ class _NavigationBarItem extends StatelessWidget {
         onTap(index);
       },
       child: SizedBox(
-        height: 60,
+        width: 70,
         child: Column(
           mainAxisSize: MainAxisSize
               .min, // if we do not specify this the column will be the full height of the screen / parent
