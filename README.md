@@ -49,3 +49,69 @@ In such cases we may use the `ValueNotifier<T>` together with the `ValueListenab
         ```dart 
             pageIndex.value = value;
         ```
+
+## Creating a Glowing Action Button
+
+To showcase a snippet of the code that forms this app, we show how one may implement a glowing action button. The key to note here is that essentially any widget can be made clickable by assigning a function to the `onTap` function. 
+
+```dart
+import 'package:messenger_app/theme.dart';
+import 'package:flutter/material.dart';
+
+class GlowingActionButton extends StatelessWidget {
+  const GlowingActionButton({
+    Key? key,
+    required this.color,
+    required this.icon,
+    this.size = 54,
+    required this.onPressed,
+  }) : super(key: key);
+
+  final Color color;
+  final IconData icon;
+  final double size;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+        boxShadow: [
+          // glowing affect
+          BoxShadow(
+            color: color.withOpacity(0.3),
+            spreadRadius: 10,
+            blurRadius: 24,
+          ),
+        ],
+      ),
+      child: ClipOval(
+        child: Material(
+          color: color,
+          child: InkWell(
+            splashColor: AppColors.cardLight,
+            onTap: onPressed,
+            child: SizedBox(
+              width: size,
+              height: size,
+              child: Icon(
+                icon,
+                size: 26,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+Furthermoe, one may observe the use of `decoration: BoxDecoration()`. This is a useful field to add borders or glowing affects to widgets, e.g. it can also be used to add dividers: 
+
+```dart
+decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 0.2)))
+```
