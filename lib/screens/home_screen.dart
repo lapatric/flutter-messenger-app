@@ -45,16 +45,30 @@ class HomeScreen extends StatelessWidget {
           builder: (BuildContext context, String value, _) {
             return Text(
               value,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             );
           },
         ),
+        leadingWidth:
+            54, // we reduce width of leading a bit to move the icon to the left a bit
+        leading: Align(
+          // inside the parent (space given to leading), we align it center-right
+          alignment: Alignment.centerRight,
+          child: IconBackground(
+            icon: Icons.search,
+            onTap: () {
+              debugPrint('TODO search');
+            },
+          ),
+        ),
         actions: [
           // actions are at the complete right in the appBar. It takes a list of items
-          Avatar.small(url: Helpers.randomPictureUrl()),
+          Padding(
+            padding: const EdgeInsets.only(right: 24.0),
+            child: Avatar.small(
+                url: Helpers
+                    .randomPictureUrl()), // we wrap Avatar in a padding widget to add padding
+          ),
         ],
       ),
       body: ValueListenableBuilder(
