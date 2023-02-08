@@ -50,6 +50,8 @@ abstract class AppTheme {
   static ThemeData dark() => ThemeData(
         // brightness: Brightness.dark, // causes error
         visualDensity: visualDensity,
+        // appBarTheme: AppBarTheme(titleTextStyle: Theme.of(context).appBarTheme.titleTextStyle?.copyWith()),
+        // https://stackoverflow.com/questions/72548446/cannot-apply-texttheme-inside-appbartheme-in-flutter
         textTheme:
             GoogleFonts.interTextTheme().apply(bodyColor: AppColors.textLight),
         scaffoldBackgroundColor: _DarkColors.background,
