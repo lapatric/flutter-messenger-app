@@ -115,3 +115,11 @@ Furthermoe, one may observe the use of `decoration: BoxDecoration()`. This is a 
 ```dart
 decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey, width: 0.2)))
 ```
+
+- Without `Expanded`, `Column` doesn't know how big to be, hence we wrap it in the former: 
+        ```dart
+        body: Column(
+                children: const [Expanded(child: _DemoMessageList()), _ActionBar()],
+              ),
+        ```
+- Page Navigation:...
